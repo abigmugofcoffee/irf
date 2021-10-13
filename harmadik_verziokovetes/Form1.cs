@@ -22,6 +22,7 @@ namespace harmadik_verziokovetes
             lblFullName.Text = Resource1.FullName;
             btnAdd.Text = Resource1.Add;
             btnWritetoFile.Text = Resource1.WritetoFile;
+            btnDelete.Text = Resource1.Delete;
 
             listUsers.DataSource = users;
             listUsers.ValueMember = "ID";
@@ -51,6 +52,12 @@ namespace harmadik_verziokovetes
                     sw.WriteLine(u.FullName);
                 }
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var delu = (User)listUsers.SelectedItem;
+            users.Remove(delu);
         }
     }
 }

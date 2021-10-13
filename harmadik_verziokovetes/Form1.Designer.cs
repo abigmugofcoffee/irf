@@ -34,6 +34,7 @@ namespace harmadik_verziokovetes
             this.txbFullName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnWritetoFile = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listUsers
@@ -81,11 +82,22 @@ namespace harmadik_verziokovetes
             this.btnWritetoFile.UseVisualStyleBackColor = true;
             this.btnWritetoFile.Click += new System.EventHandler(this.btnWritetoFile_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(524, 347);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(153, 45);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "button1";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnWritetoFile);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txbFullName);
@@ -105,6 +117,7 @@ namespace harmadik_verziokovetes
         private System.Windows.Forms.TextBox txbFullName;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnWritetoFile;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 
