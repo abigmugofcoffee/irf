@@ -18,8 +18,7 @@ namespace harmadik_verziokovetes
         {
             InitializeComponent();
 
-            lblLastName.Text = Resource1.LastName;
-            lblFirstName.Text = Resource1.FirstName;
+            lblFullName.Text = Resource1.FullName;
             btnAdd.Text = Resource1.Add;
 
             listUsers.DataSource = users;
@@ -32,10 +31,10 @@ namespace harmadik_verziokovetes
         {
             User u = new User()
             {
-                FirstName = txbFirstName.Text,
-                LastName = txbLastName.Text
+                FullName = txbFullName.Text
             };
             users.Add(u);
         }
+
     }
 }
