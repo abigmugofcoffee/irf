@@ -30,11 +30,10 @@ namespace harmadik_verziokovetes
         private void InitializeComponent()
         {
             this.listUsers = new System.Windows.Forms.ListBox();
-            this.lblLastName = new System.Windows.Forms.Label();
-            this.lblFirstName = new System.Windows.Forms.Label();
-            this.txbLastName = new System.Windows.Forms.TextBox();
-            this.txbFirstName = new System.Windows.Forms.TextBox();
+            this.lblFullName = new System.Windows.Forms.Label();
+            this.txbFullName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnWritetoFile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listUsers
@@ -46,41 +45,25 @@ namespace harmadik_verziokovetes
             this.listUsers.Size = new System.Drawing.Size(282, 384);
             this.listUsers.TabIndex = 0;
             // 
-            // lblLastName
+            // lblFullName
             // 
-            this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(365, 40);
-            this.lblLastName.Name = "lblLastName";
-            this.lblLastName.Size = new System.Drawing.Size(51, 20);
-            this.lblLastName.TabIndex = 1;
-            this.lblLastName.Text = "label1";
+            this.lblFullName.AutoSize = true;
+            this.lblFullName.Location = new System.Drawing.Point(365, 40);
+            this.lblFullName.Name = "lblFullName";
+            this.lblFullName.Size = new System.Drawing.Size(51, 20);
+            this.lblFullName.TabIndex = 1;
+            this.lblFullName.Text = "label1";
             // 
-            // lblFirstName
+            // txbFullName
             // 
-            this.lblFirstName.AutoSize = true;
-            this.lblFirstName.Location = new System.Drawing.Point(365, 90);
-            this.lblFirstName.Name = "lblFirstName";
-            this.lblFirstName.Size = new System.Drawing.Size(51, 20);
-            this.lblFirstName.TabIndex = 2;
-            this.lblFirstName.Text = "label2";
-            // 
-            // txbLastName
-            // 
-            this.txbLastName.Location = new System.Drawing.Point(502, 34);
-            this.txbLastName.Name = "txbLastName";
-            this.txbLastName.Size = new System.Drawing.Size(186, 26);
-            this.txbLastName.TabIndex = 3;
-            // 
-            // txbFirstName
-            // 
-            this.txbFirstName.Location = new System.Drawing.Point(502, 84);
-            this.txbFirstName.Name = "txbFirstName";
-            this.txbFirstName.Size = new System.Drawing.Size(186, 26);
-            this.txbFirstName.TabIndex = 4;
+            this.txbFullName.Location = new System.Drawing.Point(502, 34);
+            this.txbFullName.Name = "txbFullName";
+            this.txbFullName.Size = new System.Drawing.Size(186, 26);
+            this.txbFullName.TabIndex = 3;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(524, 146);
+            this.btnAdd.Location = new System.Drawing.Point(524, 100);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(153, 100);
             this.btnAdd.TabIndex = 5;
@@ -88,16 +71,25 @@ namespace harmadik_verziokovetes
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnWritetoFile
+            // 
+            this.btnWritetoFile.Location = new System.Drawing.Point(524, 224);
+            this.btnWritetoFile.Name = "btnWritetoFile";
+            this.btnWritetoFile.Size = new System.Drawing.Size(153, 100);
+            this.btnWritetoFile.TabIndex = 6;
+            this.btnWritetoFile.Text = "button1";
+            this.btnWritetoFile.UseVisualStyleBackColor = true;
+            this.btnWritetoFile.Click += new System.EventHandler(this.btnWritetoFile_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnWritetoFile);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.txbFirstName);
-            this.Controls.Add(this.txbLastName);
-            this.Controls.Add(this.lblFirstName);
-            this.Controls.Add(this.lblLastName);
+            this.Controls.Add(this.txbFullName);
+            this.Controls.Add(this.lblFullName);
             this.Controls.Add(this.listUsers);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -109,11 +101,10 @@ namespace harmadik_verziokovetes
         #endregion
 
         private System.Windows.Forms.ListBox listUsers;
-        private System.Windows.Forms.Label lblLastName;
-        private System.Windows.Forms.Label lblFirstName;
-        private System.Windows.Forms.TextBox txbLastName;
-        private System.Windows.Forms.TextBox txbFirstName;
+        private System.Windows.Forms.Label lblFullName;
+        private System.Windows.Forms.TextBox txbFullName;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnWritetoFile;
     }
 }
 
