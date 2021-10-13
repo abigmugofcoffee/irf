@@ -33,6 +33,7 @@ namespace harmadik_verziokovetes
             this.lblFullName = new System.Windows.Forms.Label();
             this.txbFullName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnWritetoFile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listUsers
@@ -62,7 +63,7 @@ namespace harmadik_verziokovetes
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(524, 146);
+            this.btnAdd.Location = new System.Drawing.Point(524, 100);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(153, 100);
             this.btnAdd.TabIndex = 5;
@@ -70,11 +71,22 @@ namespace harmadik_verziokovetes
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnWritetoFile
+            // 
+            this.btnWritetoFile.Location = new System.Drawing.Point(524, 224);
+            this.btnWritetoFile.Name = "btnWritetoFile";
+            this.btnWritetoFile.Size = new System.Drawing.Size(153, 100);
+            this.btnWritetoFile.TabIndex = 6;
+            this.btnWritetoFile.Text = "button1";
+            this.btnWritetoFile.UseVisualStyleBackColor = true;
+            this.btnWritetoFile.Click += new System.EventHandler(this.btnWritetoFile_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnWritetoFile);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txbFullName);
             this.Controls.Add(this.lblFullName);
@@ -92,6 +104,7 @@ namespace harmadik_verziokovetes
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.TextBox txbFullName;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnWritetoFile;
     }
 }
 

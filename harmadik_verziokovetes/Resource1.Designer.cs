@@ -77,5 +77,14 @@ namespace harmadik_verziokovetes {
                 return ResourceManager.GetString("FullName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File-ba írás.
+        /// </summary>
+        internal static string WritetoFile {
+            get {
+                return ResourceManager.GetString("WritetoFile", resourceCulture);
+            }
+        }
     }
 }

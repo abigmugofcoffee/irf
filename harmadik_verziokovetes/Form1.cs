@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace harmadik_verziokovetes
 
             lblFullName.Text = Resource1.FullName;
             btnAdd.Text = Resource1.Add;
+            btnWritetoFile.Text = Resource1.WritetoFile;
 
             listUsers.DataSource = users;
             listUsers.ValueMember = "ID";
@@ -36,5 +38,19 @@ namespace harmadik_verziokovetes
             users.Add(u);
         }
 
+        private void btnWritetoFile_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+
+            using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
+            {
+                foreach (var u in users)
+                {
+                    sw.WriteLine(u.ID);
+                    sw.WriteLine(u.FullName);
+                }
+            }
+        }
     }
 }
