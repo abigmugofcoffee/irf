@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 using webszolgaltatasok_elerese.MnbReference;
 
@@ -22,8 +23,10 @@ namespace webszolgaltatasok_elerese
 
             var result = Webhivas();
             Beolvasas(result);
+            Diagram();
 
             dataGridView1.DataSource = Rates;
+            chartRateData.DataSource = Rates;
         }
 
         private string Webhivas()
@@ -64,6 +67,24 @@ namespace webszolgaltatasok_elerese
                 }
                 else rate.Value = 0;
             }
+
+        }
+        void Diagram()
+        {
+            var series = chartRateData.Series[0];
+            series.ChartType = SeriesChartType.Line;
+
+            series.XValueMember = "date";
+            series.YValueMembers = "value";
+
+            var legend = chartRateData.Legends[0];
+            //legend.Enabeled = false;
+            var chartArea = chartRateData.ChartAreas[0];
+
+            series.BorderWidth = 2;
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
 
         }
 
