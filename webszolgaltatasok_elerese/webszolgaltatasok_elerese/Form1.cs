@@ -16,25 +16,37 @@ namespace webszolgaltatasok_elerese
     public partial class Form1 : Form
     {
         BindingList<RateData> Rates = new BindingList<RateData>();
-        //BindingList<string> Currencies = new BindingList<string>();
+        List<string> Currencies = new List<string>();
 
         public Form1()
         {
             InitializeComponent();
-
-            //comboBox1.DataSource = Currencies;
-
-            //var mnbService = new MNBArfolyamServiceSoapClient();
-            //var requestcurr = new GetCurrenciesRequestBody();
-            //var responsecurr = mnbService.GetCurrencies(requestcurr);
-            //var resultcurr = responsecurr.GetCurrenciesResult;
-            //var xml = new XmlDocument();
-            //xml.LoadXml(resultcurr);
-
+            GetCurrenices();
             RefreshData();
 
             dataGridView1.DataSource = Rates;
             chartRateData.DataSource = Rates;
+        }
+
+        void GetCurrenices()
+        {
+            var mnbService = new MNBArfolyamServiceSoapClient();
+            var requestcurr = new GetCurrenciesRequestBody();
+            var responsecurr = mnbService.GetCurrencies(requestcurr);
+            var resultcurr = responsecurr.GetCurrenciesResult;
+            var xml = new XmlDocument();
+            xml.LoadXml(resultcurr);
+
+            foreach (XmlElement element in xml.DocumentElement.ChildNodes[0])
+            {
+                if (element.ChildNodes[0] == null)
+                    continue;
+                string currency = element.InnerText;
+
+                Currencies.Add(currency);
+            }
+
+            comboBox1.DataSource = Currencies;
         }
 
         private void RefreshData()
@@ -42,29 +54,32 @@ namespace webszolgaltatasok_elerese
             Rates.Clear();
 
             var result = Webhivas();
+            if (result == null) return;
             Beolvasas(result);
             Diagram();
         }
 
-        private string Webhivas()
+        private string Webhivas()        
         {
             var mnbservice = new MNBArfolyamServiceSoapClient();
 
             string startdate = dateTimePicker1.Value.ToString();
             string enddate = dateTimePicker2.Value.ToString();
-            string curr = comboBox1.SelectedItem.ToString();
+            string curr;
+            if (comboBox1.SelectedItem.ToString() == "HUF")
+            { return null; }
 
+            curr = comboBox1.SelectedItem.ToString();
             var request = new GetExchangeRatesRequestBody()
-            { currencyNames = curr, startDate = startdate, endDate = enddate};
+            { currencyNames = curr, startDate = startdate, endDate = enddate };
 
             var response = mnbservice.GetExchangeRates(request);
 
             var result = response.GetExchangeRatesResult;
             return result;
-            
         }
 
-        void Beolvasas(string result)
+        private void Beolvasas(string result)
         {
             var xml = new XmlDocument();
             xml.LoadXml(result);
