@@ -9,7 +9,7 @@ namespace _09_modellezes.Entities
     public class DeathProbability
     {
         public Gender Gender { get; set; }
-        public int BirthYear { get; set; }
+        public int Age { get; set; }
         public double Probability { get; set; }
     }
 }

@@ -17,15 +17,30 @@ namespace _09_modellezes
         List<Person> Population = new List<Person>();
         List<ChildbirthProbability> ChildBirthProbabilities = new List<ChildbirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
+        Random rnd = new Random(1234);
         public Form1()
         {
             InitializeComponent();
-            string csvpath = "";
-            Population = GetPopulation(csvpath);
-            ChildBirthProbabilities = GetChildBirth(csvpath);
-            DeathProbabilities = GetDeaths(csvpath);
-
-            Random rng = new Random(1234);
+            MessageBox.Show(Directory.GetCurrentDirectory().ToString());
+            //string csvpath = "";
+            Population = GetPopulation(@"../../../../../09 modellezes/nép.csv");
+            ChildBirthProbabilities = GetChildBirth(@"../../../../../09 modellezes/születés.csv");
+            DeathProbabilities = GetDeaths(@"../../../../../09 modellezes/halál.csv");
+                        
+            for (int year = 2005; year < 2024; year++)
+            {
+                for (int i = 0; i < Population.Count; i++)
+                {
+                    //szimulációs lépés
+                }
+                int NbrOfMales = (from x in Population
+                                  where x.Gender == Gender.Male && x.IsAlive
+                                  select x).Count();
+                int NbrOfFemales = (from x in Population
+                                  where x.Gender == Gender.Female && x.IsAlive
+                                  select x).Count();
+                Console.WriteLine(string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, NbrOfMales, NbrOfFemales));
+            }
 
         }
         public List<Person> GetPopulation(string csvpath)
@@ -60,9 +75,9 @@ namespace _09_modellezes
                     var line = sr.ReadLine().Split(';');
                     childbirth.Add(new ChildbirthProbability()
                     {
-                        BirthYear = int.Parse(line[0]),
-                        NbrOfChildren = int.Parse(line[2]),
-                        Probability = double.Parse(line[3])
+                        Age = int.Parse(line[0]),
+                        NbrOfChildren = int.Parse(line[1]),
+                        Probability = double.Parse(line[2])
                     });
                 }
             }
@@ -81,13 +96,45 @@ namespace _09_modellezes
                     var line = sr.ReadLine().Split(';');
                     deaths.Add(new DeathProbability()
                     {
-                        Gender = (Gender)Enum.Parse(typeof(Gender), line[1]),
-                        BirthYear = int.Parse(line[0]),
-                        Probability = double.Parse(line[3])
+                        Gender = (Gender)Enum.Parse(typeof(Gender), line[0]),
+                        Age = int.Parse(line[1]),
+                        Probability = double.Parse(line[2])
                     });
                 }
             }
             return deaths;
+        }
+
+        private void SimStep(int year, Person person)
+        {
+            if (!person.IsAlive) return;
+            byte age = (byte)(year - person.BirthYear);
+
+            double pdeath = (from x in DeathProbabilities
+                             where x.Gender == person.Gender && x.Age == age
+                             select x.Probability).FirstOrDefault();
+
+            if (rnd.NextDouble() <= pdeath)
+            {
+                person.IsAlive = false;
+                return;
+            }
+            if (person.Gender == Gender.Male) return;
+
+            double pchildbirth = (from x in ChildBirthProbabilities
+                                  where x.Age == age && x.NbrOfChildren == person.NbrOfChildren
+                                  select x.Probability).FirstOrDefault();
+
+            if (rnd.NextDouble() <= pchildbirth)
+            {
+                Population.Add(new Person()
+                {
+                    BirthYear = year,
+                    Gender = (Gender)(rnd.Next(1, 3)),
+                    NbrOfChildren = 0,
+                    IsAlive = true
+                });
+            }
         }
     }
 }
