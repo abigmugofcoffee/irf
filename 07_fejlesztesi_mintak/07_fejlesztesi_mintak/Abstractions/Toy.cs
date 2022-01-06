@@ -15,7 +15,7 @@ namespace _07_fejlesztesi_mintak
             AutoSize = false;
             Width = 50;
             Height = Width;
-            Top = 2* Width;
+            Top = 2 * Width;
             Paint += Toy_Paint;
         }
 
