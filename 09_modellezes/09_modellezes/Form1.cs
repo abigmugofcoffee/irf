@@ -21,17 +21,17 @@ namespace _09_modellezes
         public Form1()
         {
             InitializeComponent();
-            MessageBox.Show(Directory.GetCurrentDirectory().ToString());
-            //string csvpath = "";
-            Population = GetPopulation(@"../../../../../09 modellezes/nép.csv");
-            ChildBirthProbabilities = GetChildBirth(@"../../../../../09 modellezes/születés.csv");
-            DeathProbabilities = GetDeaths(@"../../../../../09 modellezes/halál.csv");
+            //MessageBox.Show(Directory.GetCurrentDirectory().ToString());
+            //string csvpath;
+            Population = GetPopulation(@"../../../../../09_modellezes/nep-teszt.csv");
+            ChildBirthProbabilities = GetChildBirth(@"../../../../../09_modellezes/szuletes.csv");
+            DeathProbabilities = GetDeaths(@"../../../../../09_modellezes/halal.csv");
                         
             for (int year = 2005; year < 2024; year++)
             {
                 for (int i = 0; i < Population.Count; i++)
                 {
-                    //szimulációs lépés
+                    SimStep(year, Population[i]);
                 }
                 int NbrOfMales = (from x in Population
                                   where x.Gender == Gender.Male && x.IsAlive
